@@ -1,0 +1,376 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #f6f7fb;
+  color: #1a1a1a;
+}
+
+.app-shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app-shell > header {
+  margin-bottom: 1.5rem;
+}
+
+.inbox {
+  margin-top: 2rem;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.compose {
+  margin-top: 2rem;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.inbox__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.inbox__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.inbox__title h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #202124;
+  font-weight: 600;
+}
+
+.inbox__account {
+  font-size: 0.95rem;
+  color: #5f6368;
+  letter-spacing: 0.01em;
+}
+
+.inbox__actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid #dadddf;
+  background: #ffffff;
+  color: #1f1f1f;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.inbox__actions button:hover:not(:disabled) {
+  background: #f1f3f4;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.15);
+}
+
+.inbox__actions button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.inbox__empty,
+.inbox__loading,
+.inbox__error {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f3f4;
+  color: #5f6368;
+}
+
+.message-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid #f1f3f4;
+  transition: background 0.12s ease;
+  cursor: pointer;
+  outline: none;
+}
+
+.message-row:hover {
+  background: #f8f9fa;
+}
+
+.message-row:focus-visible {
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.35) inset;
+}
+
+.message-row--expanded {
+  background: #f1f3f4;
+  box-shadow: inset 3px 0 0 #1a73e8;
+}
+
+.message-row__from {
+  font-weight: 600;
+  color: #202124;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.message-row__content {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  font-size: 0.95rem;
+  color: #5f6368;
+}
+
+.message-row__subject {
+  font-weight: 600;
+  color: #202124;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.message-row__separator {
+  margin: 0 0.35rem;
+  color: #9aa0a6;
+}
+
+.message-row__snippet {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.message-row__meta {
+  font-size: 0.85rem;
+  color: #5f6368;
+  white-space: nowrap;
+}
+
+.message-row__meta time {
+  color: inherit;
+}
+
+.message-row__reply {
+  margin-left: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #dadddf;
+  background: #fff;
+  color: #1f1f1f;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.compose__form {
+  padding: 1rem 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.compose__form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.compose__form label {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.compose__form input,
+.compose__form textarea {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.compose__form textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.message-row__body {
+  grid-column: 1 / -1;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #202124;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    padding: 1.5rem;
+  }
+
+  .message-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.35rem;
+  }
+
+  .message-row__content {
+    grid-row: 2;
+  }
+
+  .message-row__meta {
+    justify-self: flex-start;
+  }
+}
+
+.error {
+  color: #c0392b;
+}
+
+.success {
+  color: #0f7a0f;
+  margin-top: 0.25rem;
+}
+
+.hint {
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.smart-list-panel,
+.person-panel {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.smart-list-panel h2,
+.person-panel h2 {
+  margin: 0;
+}
+
+.smart-list-form,
+.person-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.smart-list-credential {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.smart-list-credential-label {
+  font-weight: 600;
+  color: #111827;
+}
+
+.credential-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.credential-name {
+  font-weight: 600;
+}
+
+.credential-meta code {
+  font-family: "IBM Plex Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.85rem;
+  background: #f1f5f9;
+  border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+  display: inline-block;
+  color: #0f172a;
+}
+
+.smart-list-form label,
+.person-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.smart-list-form input,
+.person-form input,
+.person-form textarea {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  font-size: 1rem;
+}
+
+.person-form textarea {
+  font-family: "IBM Plex Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  min-height: 280px;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.smart-list-form button,
+.person-form button {
+  align-self: flex-start;
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.smart-list-form button:hover:not(:disabled),
+.person-form button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.smart-list-form button:disabled,
+.person-form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}

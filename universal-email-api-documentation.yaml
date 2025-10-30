@@ -1,0 +1,2895 @@
+openapi: 3.0.3
+servers:
+  - url: https://email.universal.rollout.com/api
+info:
+  title: Universal Email API Documentation
+  description: Development documentation
+  version: 0.1.0
+paths:
+  /email-threads:
+    get:
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: next
+          required: false
+        - schema:
+            anyOf:
+              - format: numeric
+                default: 0
+                type: string
+              - type: number
+          in: query
+          name: offset
+          required: false
+        - schema:
+            type: number
+          in: query
+          name: limit
+          required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: email-threads
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  email-threads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        lastMessageAt:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        originalIds:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              anyOf:
+                                - type: number
+                                - type: string
+                        original:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              patternProperties:
+                                ^(.*)$: {}
+                      required:
+                        - id
+                        - lastMessageAt
+                        - originalIds
+                        - original
+                required:
+                  - _metadata
+                  - email-threads
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: email-threads
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  email-threads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        lastMessageAt:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        originalIds:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              anyOf:
+                                - type: number
+                                - type: string
+                        original:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              patternProperties:
+                                ^(.*)$: {}
+                      required:
+                        - id
+                        - lastMessageAt
+                        - originalIds
+                        - original
+                required:
+                  - _metadata
+                  - email-threads
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: email-threads
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  email-threads:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        lastMessageAt:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        originalIds:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              anyOf:
+                                - type: number
+                                - type: string
+                        original:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              patternProperties:
+                                ^(.*)$: {}
+                      required:
+                        - id
+                        - lastMessageAt
+                        - originalIds
+                        - original
+                required:
+                  - _metadata
+                  - email-threads
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: getEmail-threads
+      tags:
+        - EmailThreads
+      security:
+        - jwt: []
+          credential_id: []
+    post:
+      parameters: []
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  lastMessageAt:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - lastMessageAt
+                  - originalIds
+                  - original
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  lastMessageAt:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - lastMessageAt
+                  - originalIds
+                  - original
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  lastMessageAt:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - lastMessageAt
+                  - originalIds
+                  - original
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: postEmail-threads
+      tags:
+        - EmailThreads
+      security:
+        - jwt: []
+          credential_id: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subject:
+                  type: string
+              required:
+                - subject
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                subject:
+                  type: string
+              required:
+                - subject
+          text/plain:
+            schema:
+              type: object
+              properties:
+                subject:
+                  type: string
+              required:
+                - subject
+  /email-threads/{id}:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  lastMessageAt:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - lastMessageAt
+                  - originalIds
+                  - original
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  lastMessageAt:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - lastMessageAt
+                  - originalIds
+                  - original
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  lastMessageAt:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - lastMessageAt
+                  - originalIds
+                  - original
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: getEmail-threadsById
+      tags:
+        - EmailThreads
+      security:
+        - jwt: []
+          credential_id: []
+      parameters:
+        - schema:
+            type: string
+          in: path
+          name: id
+          required: true
+  /emailMessages:
+    get:
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: next
+          required: false
+        - schema:
+            anyOf:
+              - format: numeric
+                default: 0
+                type: string
+              - type: number
+          in: query
+          name: offset
+          required: false
+        - schema:
+            type: number
+          in: query
+          name: limit
+          required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: emailmessages
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  emailmessages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        personId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        userId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        threadId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        subject:
+                          type: string
+                        body:
+                          type: string
+                        sender:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            email:
+                              type: string
+                          required:
+                            - name
+                            - email
+                        recipients:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              email:
+                                type: string
+                            required:
+                              - name
+                              - email
+                        isRead:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        isStarred:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        isIncoming:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        sent:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        received:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        created:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        updated:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        originalIds:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              anyOf:
+                                - type: number
+                                - type: string
+                        original:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              patternProperties:
+                                ^(.*)$: {}
+                      required:
+                        - id
+                        - personId
+                        - userId
+                        - threadId
+                        - subject
+                        - body
+                        - sender
+                        - recipients
+                        - isRead
+                        - isStarred
+                        - isIncoming
+                        - sent
+                        - received
+                        - created
+                        - updated
+                        - originalIds
+                        - original
+                required:
+                  - _metadata
+                  - emailmessages
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: emailmessages
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  emailmessages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        personId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        userId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        threadId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        subject:
+                          type: string
+                        body:
+                          type: string
+                        sender:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            email:
+                              type: string
+                          required:
+                            - name
+                            - email
+                        recipients:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              email:
+                                type: string
+                            required:
+                              - name
+                              - email
+                        isRead:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        isStarred:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        isIncoming:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        sent:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        received:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        created:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        updated:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        originalIds:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              anyOf:
+                                - type: number
+                                - type: string
+                        original:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              patternProperties:
+                                ^(.*)$: {}
+                      required:
+                        - id
+                        - personId
+                        - userId
+                        - threadId
+                        - subject
+                        - body
+                        - sender
+                        - recipients
+                        - isRead
+                        - isStarred
+                        - isIncoming
+                        - sent
+                        - received
+                        - created
+                        - updated
+                        - originalIds
+                        - original
+                required:
+                  - _metadata
+                  - emailmessages
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: emailmessages
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  emailmessages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        personId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        userId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        threadId:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        subject:
+                          type: string
+                        body:
+                          type: string
+                        sender:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            email:
+                              type: string
+                          required:
+                            - name
+                            - email
+                        recipients:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              email:
+                                type: string
+                            required:
+                              - name
+                              - email
+                        isRead:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        isStarred:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        isIncoming:
+                          anyOf:
+                            - type: boolean
+                            - type: "null"
+                        sent:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        received:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        created:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        updated:
+                          anyOf:
+                            - type: string
+                            - type: "null"
+                        originalIds:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              anyOf:
+                                - type: number
+                                - type: string
+                        original:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              patternProperties:
+                                ^(.*)$: {}
+                      required:
+                        - id
+                        - personId
+                        - userId
+                        - threadId
+                        - subject
+                        - body
+                        - sender
+                        - recipients
+                        - isRead
+                        - isStarred
+                        - isIncoming
+                        - sent
+                        - received
+                        - created
+                        - updated
+                        - originalIds
+                        - original
+                required:
+                  - _metadata
+                  - emailmessages
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: getEmailMessages
+      tags:
+        - Email Messages
+      security:
+        - jwt: []
+          credential_id: []
+    post:
+      parameters: []
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  personId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  userId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  threadId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  subject:
+                    type: string
+                  body:
+                    type: string
+                  sender:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                  recipients:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        email:
+                          type: string
+                      required:
+                        - name
+                        - email
+                  isRead:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isStarred:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isIncoming:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  sent:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  received:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  created:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  updated:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - personId
+                  - userId
+                  - threadId
+                  - subject
+                  - body
+                  - sender
+                  - recipients
+                  - isRead
+                  - isStarred
+                  - isIncoming
+                  - sent
+                  - received
+                  - created
+                  - updated
+                  - originalIds
+                  - original
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  personId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  userId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  threadId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  subject:
+                    type: string
+                  body:
+                    type: string
+                  sender:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                  recipients:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        email:
+                          type: string
+                      required:
+                        - name
+                        - email
+                  isRead:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isStarred:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isIncoming:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  sent:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  received:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  created:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  updated:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - personId
+                  - userId
+                  - threadId
+                  - subject
+                  - body
+                  - sender
+                  - recipients
+                  - isRead
+                  - isStarred
+                  - isIncoming
+                  - sent
+                  - received
+                  - created
+                  - updated
+                  - originalIds
+                  - original
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  personId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  userId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  threadId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  subject:
+                    type: string
+                  body:
+                    type: string
+                  sender:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                  recipients:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        email:
+                          type: string
+                      required:
+                        - name
+                        - email
+                  isRead:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isStarred:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isIncoming:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  sent:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  received:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  created:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  updated:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - personId
+                  - userId
+                  - threadId
+                  - subject
+                  - body
+                  - sender
+                  - recipients
+                  - isRead
+                  - isStarred
+                  - isIncoming
+                  - sent
+                  - received
+                  - created
+                  - updated
+                  - originalIds
+                  - original
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: postEmailMessages
+      tags:
+        - Email Messages
+      security:
+        - jwt: []
+          credential_id: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                personId:
+                  type: string
+                userId:
+                  type: string
+                subject:
+                  type: string
+                body:
+                  type: string
+                sender:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                  required:
+                    - name
+                    - email
+                recipients:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                threadId:
+                  type: string
+              required:
+                - subject
+                - body
+                - sender
+                - recipients
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                personId:
+                  type: string
+                userId:
+                  type: string
+                subject:
+                  type: string
+                body:
+                  type: string
+                sender:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                  required:
+                    - name
+                    - email
+                recipients:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                threadId:
+                  type: string
+              required:
+                - subject
+                - body
+                - sender
+                - recipients
+          text/plain:
+            schema:
+              type: object
+              properties:
+                personId:
+                  type: string
+                userId:
+                  type: string
+                subject:
+                  type: string
+                body:
+                  type: string
+                sender:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                  required:
+                    - name
+                    - email
+                recipients:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                threadId:
+                  type: string
+              required:
+                - subject
+                - body
+                - sender
+                - recipients
+  /emailMessages/{id}:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  personId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  userId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  threadId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  subject:
+                    type: string
+                  body:
+                    type: string
+                  sender:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                  recipients:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        email:
+                          type: string
+                      required:
+                        - name
+                        - email
+                  isRead:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isStarred:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isIncoming:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  sent:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  received:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  created:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  updated:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - personId
+                  - userId
+                  - threadId
+                  - subject
+                  - body
+                  - sender
+                  - recipients
+                  - isRead
+                  - isStarred
+                  - isIncoming
+                  - sent
+                  - received
+                  - created
+                  - updated
+                  - originalIds
+                  - original
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  personId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  userId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  threadId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  subject:
+                    type: string
+                  body:
+                    type: string
+                  sender:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                  recipients:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        email:
+                          type: string
+                      required:
+                        - name
+                        - email
+                  isRead:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isStarred:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isIncoming:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  sent:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  received:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  created:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  updated:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - personId
+                  - userId
+                  - threadId
+                  - subject
+                  - body
+                  - sender
+                  - recipients
+                  - isRead
+                  - isStarred
+                  - isIncoming
+                  - sent
+                  - received
+                  - created
+                  - updated
+                  - originalIds
+                  - original
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  personId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  userId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  threadId:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  subject:
+                    type: string
+                  body:
+                    type: string
+                  sender:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                    required:
+                      - name
+                      - email
+                  recipients:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        email:
+                          type: string
+                      required:
+                        - name
+                        - email
+                  isRead:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isStarred:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  isIncoming:
+                    anyOf:
+                      - type: boolean
+                      - type: "null"
+                  sent:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  received:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  created:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  updated:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  originalIds:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        anyOf:
+                          - type: number
+                          - type: string
+                  original:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        patternProperties:
+                          ^(.*)$: {}
+                required:
+                  - id
+                  - personId
+                  - userId
+                  - threadId
+                  - subject
+                  - body
+                  - sender
+                  - recipients
+                  - isRead
+                  - isStarred
+                  - isIncoming
+                  - sent
+                  - received
+                  - created
+                  - updated
+                  - originalIds
+                  - original
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: getEmailMessagesById
+      tags:
+        - Email Messages
+      security:
+        - jwt: []
+          credential_id: []
+      parameters:
+        - schema:
+            type: string
+          in: path
+          name: id
+          required: true
+  /webhooks:
+    get:
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: next
+          required: false
+        - schema:
+            anyOf:
+              - format: numeric
+                default: 0
+                type: string
+              - type: number
+          in: query
+          name: offset
+          required: false
+        - schema:
+            type: number
+          in: query
+          name: limit
+          required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: webhooks
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  webhooks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        status:
+                          anyOf:
+                            - const: Active
+                              type: string
+                            - const: Disabled
+                              type: string
+                        event:
+                          type: string
+                        url:
+                          type: string
+                        filters:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              properties:
+                                equals:
+                                  type: string
+                              required:
+                                - equals
+                      required:
+                        - id
+                        - status
+                        - event
+                        - url
+                        - filters
+                required:
+                  - _metadata
+                  - webhooks
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: webhooks
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  webhooks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        status:
+                          anyOf:
+                            - const: Active
+                              type: string
+                            - const: Disabled
+                              type: string
+                        event:
+                          type: string
+                        url:
+                          type: string
+                        filters:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              properties:
+                                equals:
+                                  type: string
+                              required:
+                                - equals
+                      required:
+                        - id
+                        - status
+                        - event
+                        - url
+                        - filters
+                required:
+                  - _metadata
+                  - webhooks
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  _metadata:
+                    type: object
+                    properties:
+                      collection:
+                        const: webhooks
+                        type: string
+                      offset:
+                        type: number
+                      limit:
+                        type: number
+                      total:
+                        type: number
+                      next:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                      nextLink:
+                        anyOf:
+                          - type: string
+                          - type: "null"
+                    required:
+                      - collection
+                      - offset
+                      - limit
+                      - total
+                      - next
+                      - nextLink
+                  webhooks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        status:
+                          anyOf:
+                            - const: Active
+                              type: string
+                            - const: Disabled
+                              type: string
+                        event:
+                          type: string
+                        url:
+                          type: string
+                        filters:
+                          type: object
+                          patternProperties:
+                            ^(.*)$:
+                              type: object
+                              properties:
+                                equals:
+                                  type: string
+                              required:
+                                - equals
+                      required:
+                        - id
+                        - status
+                        - event
+                        - url
+                        - filters
+                required:
+                  - _metadata
+                  - webhooks
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+      operationId: getWebhooks
+      tags:
+        - Webhooks
+      security:
+        - jwt: []
+          credential_id: []
+    post:
+      parameters: []
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    anyOf:
+                      - const: Active
+                        type: string
+                      - const: Disabled
+                        type: string
+                  event:
+                    type: string
+                  url:
+                    type: string
+                  filters:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        properties:
+                          equals:
+                            type: string
+                        required:
+                          - equals
+                required:
+                  - id
+                  - status
+                  - event
+                  - url
+                  - filters
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    anyOf:
+                      - const: Active
+                        type: string
+                      - const: Disabled
+                        type: string
+                  event:
+                    type: string
+                  url:
+                    type: string
+                  filters:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        properties:
+                          equals:
+                            type: string
+                        required:
+                          - equals
+                required:
+                  - id
+                  - status
+                  - event
+                  - url
+                  - filters
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    anyOf:
+                      - const: Active
+                        type: string
+                      - const: Disabled
+                        type: string
+                  event:
+                    type: string
+                  url:
+                    type: string
+                  filters:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        properties:
+                          equals:
+                            type: string
+                        required:
+                          - equals
+                required:
+                  - id
+                  - status
+                  - event
+                  - url
+                  - filters
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: postWebhooks
+      tags:
+        - Webhooks
+      security:
+        - jwt: []
+          credential_id: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                event:
+                  type: string
+                filters:
+                  type: object
+                  patternProperties:
+                    ^(.*)$:
+                      type: object
+                      properties:
+                        equals:
+                          type: string
+                      required:
+                        - equals
+              required:
+                - url
+                - event
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                event:
+                  type: string
+                filters:
+                  type: object
+                  patternProperties:
+                    ^(.*)$:
+                      type: object
+                      properties:
+                        equals:
+                          type: string
+                      required:
+                        - equals
+              required:
+                - url
+                - event
+          text/plain:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                event:
+                  type: string
+                filters:
+                  type: object
+                  patternProperties:
+                    ^(.*)$:
+                      type: object
+                      properties:
+                        equals:
+                          type: string
+                      required:
+                        - equals
+              required:
+                - url
+                - event
+  /webhooks/{id}:
+    put:
+      parameters:
+        - schema:
+            type: string
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    anyOf:
+                      - const: Active
+                        type: string
+                      - const: Disabled
+                        type: string
+                  event:
+                    type: string
+                  url:
+                    type: string
+                  filters:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        properties:
+                          equals:
+                            type: string
+                        required:
+                          - equals
+                required:
+                  - id
+                  - status
+                  - event
+                  - url
+                  - filters
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    anyOf:
+                      - const: Active
+                        type: string
+                      - const: Disabled
+                        type: string
+                  event:
+                    type: string
+                  url:
+                    type: string
+                  filters:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        properties:
+                          equals:
+                            type: string
+                        required:
+                          - equals
+                required:
+                  - id
+                  - status
+                  - event
+                  - url
+                  - filters
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    anyOf:
+                      - const: Active
+                        type: string
+                      - const: Disabled
+                        type: string
+                  event:
+                    type: string
+                  url:
+                    type: string
+                  filters:
+                    type: object
+                    patternProperties:
+                      ^(.*)$:
+                        type: object
+                        properties:
+                          equals:
+                            type: string
+                        required:
+                          - equals
+                required:
+                  - id
+                  - status
+                  - event
+                  - url
+                  - filters
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    type: string
+                required:
+                  - errorMessage
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Requested resource was not found.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Requested resource was not found.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Requested resource was not found.
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: putWebhooksById
+      tags:
+        - Webhooks
+      security:
+        - jwt: []
+          credential_id: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                event:
+                  type: string
+                filters:
+                  type: object
+                  patternProperties:
+                    ^(.*)$:
+                      type: object
+                      properties:
+                        equals:
+                          type: string
+                      required:
+                        - equals
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                event:
+                  type: string
+                filters:
+                  type: object
+                  patternProperties:
+                    ^(.*)$:
+                      type: object
+                      properties:
+                        equals:
+                          type: string
+                      required:
+                        - equals
+          text/plain:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                event:
+                  type: string
+                filters:
+                  type: object
+                  patternProperties:
+                    ^(.*)$:
+                      type: object
+                      properties:
+                        equals:
+                          type: string
+                      required:
+                        - equals
+    delete:
+      responses:
+        "200":
+          minItems: 0
+          maxItems: 0
+          content:
+            application/json:
+              schema:
+                type: array
+            multipart/form-data:
+              schema:
+                type: array
+            text/plain:
+              schema:
+                type: array
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Requested resource was not found.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Requested resource was not found.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Requested resource was not found.
+                    type: string
+                required:
+                  - errorMessage
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  errorMessage:
+                    const: Data for this credential is not ready yet. Please try again.
+                    type: string
+                required:
+                  - errorMessage
+      operationId: deleteWebhooksById
+      tags:
+        - Webhooks
+      security:
+        - jwt: []
+          credential_id: []
+      parameters:
+        - schema:
+            type: string
+          in: path
+          name: id
+          required: true
+components:
+  schemas: {}
