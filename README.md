@@ -1,10 +1,10 @@
 # Email Demo
 
-This project is the starting point for the Rollout email demo. It reuses the Smart List demo scaffolding so we have a Sinatra backend that can mint Rollout tokens and a React (Vite) frontend that already knows how to mount the Rollout Link UI. We will trim and customize it for the email experience next.
+This project is a minimal Rollout Universal Email demo. It provides a tiny Sinatra backend to mint Rollout tokens and a React (Vite) frontend that mounts the Rollout Link UI and demonstrates reading an inbox and replying in-thread via the Universal Email API.
 
 ## Project Layout
 
-- `backend/` – Sinatra API service with a couple of placeholder endpoints
+- `backend/` – Sinatra API service that mints tokens for the frontend
 - `frontend/` – React app bootstrapped with Vite and configured to proxy API calls to the backend during development
 - `backend/.env.example` – template for environment variables required to talk to Rollout
 
@@ -51,6 +51,6 @@ The frontend fetches credentials directly from Rollout's universal API when boot
    - Ensure the environment variables `ROLLOUT_CLIENT_ID` and `ROLLOUT_CLIENT_SECRET` are set before launching.
    - Optionally override `ROLLOUT_API_BASE_URL` if you need to point at a different Rollout environment.
 2. Start the frontend dev server (`npm run dev`).
-3. Visit `http://127.0.0.1:5173` in your browser. The frontend will request a token from `/api/rollout/token`, mount the Rollout Link UI (currently scoped to the Follow Up Boss Advanced connector), and surface the existing smart list and person helpers that shipped with the original demo.
+3. Visit `http://127.0.0.1:5173` in your browser. The frontend requests a token from `/api/rollout/token`, mounts the Rollout Link UI (Gmail in this demo), lists inbox messages, and lets you reply. When replying, it will hydrate an existing `threadId` or create a thread via `POST /email-threads`, then send the reply to `POST /emailMessages` with that `threadId`.
 
-Feel free to replace or remove the smart list-specific pieces as you build out the email demo functionality.
+This repo intentionally avoids unrelated examples to stay focused on the email demo.
